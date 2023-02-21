@@ -17,16 +17,30 @@ public class VentasDbContext
     {
         var data = new List<Venta>();
 
-        // ToDo
+        var con = new SqlConnection(_connectionString);
+        var cmd = new SqlCommand("SELECT [Id],[Nombre],[Direccion],[Telefono],[Correo] FROM [Venta]", con);
         try
         {
-            // ToDo
+            con.Open();
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                data.Add(new Venta
+                {
+                    Id = (Guid)dr["Id"],
+                    ClienteId = (Guid)dr["ClienteId"],
+                    Cliente = (Cliente)dr["Cliente"],
+                    ProductoId = (Guid)dr["ProductoId"],
+                    Producto = (Producto)dr["Producto"],
+                    Fecha = (DateTime)dr["Fecha"]
+                });
+            }
             return data;
         }
         catch (Exception) { throw; }
         finally
         {
-            // ToDo
+           con.Close();
         }
     }
 
@@ -34,61 +48,91 @@ public class VentasDbContext
     {
         var data = new Venta();
 
-        // ToDo
+        var con = new SqlConnection(_connectionString);
+        var cmd = new SqlCommand("SELECT [Id],[ClienteId],[Cliente],[ProductoId],[Producto],[Fecha] FROM [Venta] WHERE [Id] = @Id", con);
+        cmd.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = id;
         try
         {
-            // ToDo
+            con.Open();
+            var dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                data.Id = (Guid)dr["Id"];
+                data.ClienteId = (Guid)dr["ClienteId"];
+                data.Cliente = (Cliente)dr["Cliente"];
+                data.ProductoId = (Guid)dr["ProductoId"];
+                data.Producto = (Producto)dr["Producto"];
+                data.Fecha = (DateTime)dr["Fecha"];
+            }
             return data;
         }
         catch (Exception) { throw; }
         finally
         {
-            // ToDo
+            con.Close();
         }
     }
 
     public void Create(Venta data)
     {
-        // ToDo
+        // Checar con el profesor esta parte :u 
+        var con = new SqlConnection(_connectionString);
+        var cmd = new SqlCommand("INSERT INTO [Venta] ([ClienteId],[Cliente],[ProductoId],[Producto],[Fecha]) VALUES (@ClienteId,@Cliente,@ProductoId,@Producto,@Fecha)", con);
+        cmd.Parameters.Add("ClienteId", SqlDbType.NVarChar, 128 ).Value = data.ClienteId;
+        cmd.Parameters.Add("Cliente", SqlDbType.NVarChar, 128).Value = data.ProductoId;
+        cmd.Parameters.Add("ProductoId", SqlDbType.NVarChar, 128).Value = data.ProductoId;
+        cmd.Parameters.Add("Producto", SqlDbType.NVarChar, 128).Value = data.Producto;
+        cmd.Parameters.Add("Fecha", SqlDbType.NVarChar, 128).Value = data.Fecha;
 
         try
         {
-            // ToDo
+            con.Open();
+            cmd.ExecuteNonQuery();
         }
         catch (Exception) { throw; }
         finally
         {
-            // ToDo
+            con.Close();
         }
     }
 
     public void Edit(Venta data)
     {
-        // ToDo
+        var con = new SqlConnection(_connectionString);
+        var cmd = new SqlCommand("UPDATE [Venta] SET [ClienteId] = @ClienteId, [Cliente] = @Cliente, [ProductoId] = @ProductoId, [Producto] = @Producto, [Fecha] = @Fecha,  WHERE [Id] = @Id", con);
+        cmd.Parameters.Add("ClienteId", SqlDbType.UniqueIdentifier).Value = data.ClienteId;
+        cmd.Parameters.Add("Cliente", SqlDbType.NVarChar, 128).Value = data.Cliente;
+        cmd.Parameters.Add("ProductoId", SqlDbType.NVarChar, 128).Value = data.ProductoId;
+        cmd.Parameters.Add("Producto", SqlDbType.NVarChar, 128).Value = data.Producto;
+        cmd.Parameters.Add("Fecha", SqlDbType.NVarChar, 128).Value = data.Fecha;
 
         try
         {
-            // ToDo
+            con.Open();
+            cmd.ExecuteNonQuery();
         }
         catch (Exception) { throw; }
         finally
         {
-            // ToDo
+            con.Close();
         }
     }
 
     public void Delete(Guid id)
     {
-        // ToDo
+        var con = new SqlConnection(_connectionString);
+        var cmd = new SqlCommand("DELETE FROM [Venta] WHERE [Id] = @Id", con);
+        cmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = id;
 
         try
         {
-            // ToDo
+            con.Open();
+            cmd.ExecuteNonQuery();
         }
         catch (Exception) { throw; }
         finally
         {
-            // ToDo
+            con.Close();
         }
     }
 }
