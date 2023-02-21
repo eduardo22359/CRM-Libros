@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Productos > Crear";
+}
+
+@model Producto
+
+<h1>
+    Insertar:
+</h1>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    Descripción: <input asp-for="Descripción" type="text" required />
+    <br />
+    Precio: <input asp-for="Precio" type="text" required />
+    <br />
+    Cantidad: <input asp-for="Cantidad" type="number" required />
+    <br />
+    <button>Crear</button>
+</form>
+
+<a asp-action="Index">Cancelar</a>
