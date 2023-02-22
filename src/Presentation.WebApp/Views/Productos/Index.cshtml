@@ -2,19 +2,17 @@
 
 @model List<Producto>
 
-<a asp-action="Create">Crear un Nuevo Producto</a>
-
 <h1>
     Productos:
 </h1>
 
 <table>
-    <tr>
+    <thead>
         <th>Descripción</th>
         <th>Precio</th>
         <th>Cantidad</th>
         <th></th>
-    </tr>
+    </thead>
     @foreach (var e in Model)
     {
         <tr>
@@ -22,10 +20,14 @@
             <td>@e.Precio</td>
             <td>@e.Cantidad</td>
             <td>
-                <a asp-action="Details" asp-route-id="@e.Id">Detalles</a> |
-                <a asp-action="Edit" asp-route-id="@e.Id">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@e.Id">Eliminar</a>
+                <button class="btn btn-info" asp-action="Details" asp-route-id="@e.Id">Detalles</button>
+                <button class="btn btn-info" asp-action="Edit" asp-route-id="@e.Id">Editar</button>
+                <button class="btn btn-info" asp-action="Delete" asp-route-id="@e.Id">Eliminar</button>
             </td>
         </tr>
     }
 </table>
+<br><br>
+<div style="text-align: center;">
+<button class="btn btn-primary" asp-action="Create">Crear Producto:</button>
+</div>

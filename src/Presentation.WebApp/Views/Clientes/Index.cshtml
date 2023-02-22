@@ -2,20 +2,21 @@
 
 @model List<Cliente>
 
-<a asp-action="Create">Crear un Nuevo Cliente:</a>
+
 
 <h1>
     Clientes:
 </h1>
 
-<table>
-    <tr>
+<table class="table table-striped">
+    <thead>
+        
         <th>Nombre</th>
         <th>Direccion</th>
         <th>Telefono</th>
         <th>Correo</th>
-        <th></th>
-    </tr>
+        <th>OPCIONES</th>
+    </thead>
     @foreach (var c in Model)
     {
         <tr>
@@ -24,10 +25,16 @@
             <th>@c.Telefono</th>
             <td>@c.Correo</td>
             <td>
-                <a asp-action="Details" asp-route-id="@c.Id">Detalles</a> |
-                <a asp-action="Edit" asp-route-id="@c.Id">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@c.Id">Eliminar</a>
+                <button class="btn btn-info" asp-action="Details" asp-route-id="@c.Id">Detalles</button>
+                <button class="btn btn-info" asp-action="Edit" asp-route-id="@c.Id">Editar</button>
+                <button class="btn btn-info" asp-action="Delete" asp-route-id="@c.Id">Eliminar</button>
             </td>
         </tr>
     }
 </table>
+<br>
+<br>
+<div style="text-align: center;">
+<button class="btn btn-primary" asp-action="Create">Crear Cliente:</button>
+</div>
+
