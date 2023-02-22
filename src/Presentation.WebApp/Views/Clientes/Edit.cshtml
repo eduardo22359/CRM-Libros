@@ -2,9 +2,43 @@
 
 @model Cliente
 
-<h1>
-    Actualizar:
-</h1>
+<!-- Genera un card con formulario para actualizar los datos del cliente -->
+<div id="editclientes">
+    <div class="card">
+        <div class="card-header">
+            <h3>Actualizar Cliente</h3>
+        </div>
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input asp-for="Id" type="hidden" />
+            <div class="card-body">
+                <h5 class="card-title">ID: @Model.Id</h5>
+                <p class="card-text">
+                    <b>Nombre:</b>
+                    <input asp-for="Nombre" required />
+                </p>
+                <p class="card-text">
+                    <b>Dirección:</b>
+                    <input asp-for="Direccion" required />
+                </p>
+                <p class="card-text">
+                    <b>Teléfono:</b>
+                    <input asp-for="Telefono" required />
+                </p>
+                <p class="card-text">
+                    <b>Correo:</b>
+                    <input asp-for="Correo" required />
+                </p>
+                <div class="row d-flex justify-content-center">
+                    <button class="col btn btn-success" type="button">Actualizar</button>
+                    <a asp-action="Index" class="col btn btn-danger" type="button">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!--
 
 <form asp-action="Edit" enctype="multipart/form-data">
     <input asp-for="Id" type="hidden" />
@@ -20,5 +54,13 @@
     <br />
     <button>Actualizar</button>
 </form>
+-->
+
+
+<!-- Botón para cancelar con bootstrap-->
+
+
+
+
 
 <a asp-action="Index">Cancelar</a>
