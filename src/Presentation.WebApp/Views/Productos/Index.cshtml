@@ -2,9 +2,11 @@
 
 @model List<Producto>
 
-<h1>
-    Productos:
-</h1>
+    <br>
+    <div class="container" id="title">
+        <h1 >Productos</h1>
+    </div>
+    <br>
 
 <table class="table table-striped">
     <thead>
@@ -27,7 +29,7 @@
         </tr>
     }
 </table>
-<br><br>
+<br>
 <div style="text-align: center;">
-<a class="btn btn-primary" asp-action="Create">Crear Producto:</a>
+<a class="btn btn-warning" asp-action="Create">Crear un Producto</a>
 </div>

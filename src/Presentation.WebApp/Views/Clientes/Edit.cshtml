@@ -2,40 +2,50 @@
 
 @model Cliente
 
-<!-- Genera un card con formulario para actualizar los datos del cliente -->
+
+<!-- Crea una Plantilla para un formulario-->
 <div id="editclientes">
-    <div class="card">
+    <div class="card" id="cardeditcli">
         <div class="card-header">
             <h3>Actualizar Cliente</h3>
         </div>
-        <form asp-action="Edit" enctype="multipart/form-data">
-            <input asp-for="Id" type="hidden" />
-            <div class="card-body">
-                <h5 class="card-title">ID: @Model.Id</h5>
-                <p class="card-text">
-                    <b>Nombre:</b>
-                    <input asp-for="Nombre" required />
-                </p>
-                <p class="card-text">
-                    <b>Dirección:</b>
-                    <input asp-for="Direccion" required />
-                </p>
-                <p class="card-text">
-                    <b>Teléfono:</b>
-                    <input asp-for="Telefono" required />
-                </p>
-                <p class="card-text">
-                    <b>Correo:</b>
-                    <input asp-for="Correo" required />
-                </p>
-                <div class="row d-flex justify-content-center">
-                    <button class="col btn btn-success" type="button">Actualizar</button>
-                    <a asp-action="Index" class="col btn btn-danger" type="button">Cancelar</a>
+        <div class="container">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="id" class="card-title">ID</label>
+                    <label for="id" class="form-label">@Model.Id</label>
+                    <input type="hidden" class="form-control" id="id" asp-for="Id" required>
                 </div>
-            </div>
-        </form>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" asp-for="Nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Direccion</label>
+                    <input type="text" class="form-control" id="direccion" asp-for="Direccion" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" asp-for="Telefono" required>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correo" asp-for="Correo" required>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-success btn-block">Enviar</button>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <button type="submit" class="btn btn-danger btn-block" asp-action="Index">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+
 
 
 <!--
@@ -55,12 +65,3 @@
     <button>Actualizar</button>
 </form>
 -->
-
-
-<!-- Botón para cancelar con bootstrap-->
-
-
-
-
-
-<a asp-action="Index">Cancelar</a>

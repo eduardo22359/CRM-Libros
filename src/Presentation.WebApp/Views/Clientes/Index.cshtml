@@ -3,22 +3,24 @@
 @model List<Cliente>
 
 
+    <!-- Título de clientes con boostrap-->
+    <br>
+    <div class="container" id="title">
+        <h1 >Clientes</h1>
+    </div>
+    <br>
 
-<h1>
-    Clientes:
-</h1>
+    <table class="table table-striped">
+        <thead>
 
-<table class="table table-striped">
-    <thead>
-        
-        <th>Nombre</th>
-        <th>Direccion</th>
-        <th>Telefono</th>
-        <th>Correo</th>
-        <th>OPCIONES</th>
-    </thead>
-    @foreach (var c in Model)
-    {
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>OPCIONES</th>
+        </thead>
+        @foreach (var c in Model)
+        {
         <tr>
             <th>@c.Nombre</th>
             <td>@c.Direccion</td>
@@ -30,11 +32,9 @@
                 <a class="btn btn-info" asp-action="Delete" asp-route-id="@c.Id">Eliminar</a>
             </td>
         </tr>
-    }
-</table>
-<br>
-<br>
-<div style="text-align: center;">
-<a class="btn btn-primary" asp-action="Create">Crear Cliente:</a>
-</div>
-
+        }
+    </table>
+    <br>
+    <div style="text-align: center;">
+        <a class="btn btn-warning" asp-action="Create">Crear un Cliente</a>
+    </div>

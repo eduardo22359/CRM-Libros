@@ -1,9 +1,52 @@
 @{
-    ViewData["Title"] = "Productos > Crear";
+ViewData["Title"] = "Productos > Crear";
 }
 
 @model Producto
 
+<!-- Crea una Plantilla para un formulario-->
+<div id="editclientes">
+    <div class="card" id="cardeditcli">
+        <div class="card-header">
+            <h3>Crear un Producto</h3>
+        </div>
+        <div class="container">
+            <form asp-action="Edit" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="Descripcion" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="Descripcion" asp-for="Descripcion" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Precio" class="form-label">Precio</label>
+                    <input type="text" class="form-control" id="Precio" asp-for="Precio" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Cantidad" class="form-label">Cantidad</label>
+                    <input type="text" class="form-control" id="Cantidad" asp-for="Cantidad" required>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-success btn-block">Crear</button>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <a class="btn btn-danger btn-block" asp-controller="Productos"
+                            asp-action="Index">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!--
 <h1>
     Insertar:
 </h1>
@@ -19,3 +62,5 @@
 </form>
 
 <a asp-action="Index">Cancelar</a>
+
+-->

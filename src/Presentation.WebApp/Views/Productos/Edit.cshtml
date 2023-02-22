@@ -2,10 +2,49 @@
 
 @model Producto
 
-<h1>
-    Actualizar:
-</h1>
+<!-- Crea una Plantilla para un formulario-->
+<div id="editclientes">
+    <div class="card" id="cardeditcli">
+        <div class="card-header">
+            <h3>Actualizar Producto</h3>
+        </div>
+        <div class="container">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="id" class="card-title">ID</label>
+                    <label for="id" class="form-label">@Model.Id</label>
+                    <input type="hidden" class="form-control" id="id" asp-for="Id" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Descripcion" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="Descripcion" asp-for="Descripcion" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Precio" class="form-label">Precio</label>
+                    <input type="text" class="form-control" id="Precio" asp-for="Precio" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Cantidad" class="form-label">Cantidad</label>
+                    <input type="text" class="form-control" id="Cantidad" asp-for="Cantidad" required>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-success btn-block">Actualizar</button>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <button type="submit" class="btn btn-danger btn-block" asp-action="Index">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+
+
+
+
+<!--
 <form asp-action="Edit" enctype="multipart/form-data">
     <input asp-for="Id" type="hidden" />
     Descripción: <input asp-for="Descripcion" type="text" required />
@@ -19,3 +58,5 @@
 </form>
 
 <a asp-action="Index">Cancelar</a>
+
+-->

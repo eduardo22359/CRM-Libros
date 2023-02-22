@@ -4,6 +4,50 @@
 
 @model Cliente
 
+<!-- Crea una Plantilla para un formulario-->
+<div id="editclientes">
+    <div class="card" id="cardeditcli">
+        <div class="card-header">
+            <h3>Crear un Cliente</h3>
+        </div>
+        <div class="container">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" asp-for="Nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Direccion</label>
+                    <input type="text" class="form-control" id="direccion" asp-for="Direccion" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" asp-for="Telefono" required>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" id="correo" asp-for="Correo" required>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-success btn-block">Crear</button>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <a type="submit" class="btn btn-danger btn-block" asp-action="Index">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--
 <h1>
     Insertar:
 </h1>
@@ -22,3 +66,5 @@
 </form>
 
 <a asp-action="Index">Cancelar</a>
+
+-->
