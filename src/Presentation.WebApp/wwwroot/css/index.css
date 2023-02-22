@@ -23,3 +23,31 @@ footer {
 footer span {
     color: white !important;
 }
+
+/*--------------------------------------------------------------*/
+
+
+.card {
+    position: absolute;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 20px !important;
+    overflow: hidden;
+    width: 18rem; 
+    margin: 0 auto; 
+    margin-top: 5%;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+    height: 15rem;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+
+}
+
+

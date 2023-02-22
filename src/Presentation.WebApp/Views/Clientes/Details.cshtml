@@ -2,30 +2,16 @@
 
 @model Cliente
 
-<dl>
-    <dt>Id</dt>
-    <dd>@Model.Id</dd>
-
-    <dt>Nombre</dt>
-    <dd>@Model.Nombre</dd>
-
-    <dt>Direccion</dt>
-    <dd>@Model.Direccion</dd>
-
-    <dt>Telefono</dt>
-    <dd>@Model.Telefono</dd>
-
-    <dt>Correo</dt>
-    <dd>@Model.Correo</dd>
-</dl>
 
 <!-- Genera un card para mostrar los datos del cliente-->
-<div class="card" style="width: 18rem;">
+<div class="card">
+    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+        class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title">@Model.Nombre</h5>
-        <h6 class="card-subtitle mb-2 text-muted">@Model.Id</h6>
-        <p class="card-text">Telefono: @Model.Telefono</p>
-        <p class="card-text">Correo: @Model.Correo</p>
-        <p class="card-text">Direccion: @Model.Direccion</p>
+        <h5 class="card-title">ID: @Model.Id</h5>
+        <p class="card-text"><b>Nombre:</b> @Model.Nombre</p>
+        <p class="card-text"><b>Dirección:</b> @Model.Direccion </p>
+        <p class="card-text"><b>Teléfono:</b> @Model.Telefono</p>
+        <p class="card-text"><b>Correo:</b> @Model.Correo</p>
     </div>
 </div>
