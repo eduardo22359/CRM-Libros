@@ -1,0 +1,25 @@
+
+/* CSS para el body con fondo*/
+body {
+    background-image: url("https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+#footer1 {
+    color : #ffffff !important;
+}
+
+footer {
+    background-color: black;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+footer span {
+    color: white !important;
+}
