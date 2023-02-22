@@ -18,3 +18,14 @@
     <dt>Correo</dt>
     <dd>@Model.Correo</dd>
 </dl>
+
+<!-- Genera un card para mostrar los datos del cliente-->
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Nombre</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.Id</h6>
+        <p class="card-text">Telefono: @Model.Telefono</p>
+        <p class="card-text">Correo: @Model.Correo</p>
+        <p class="card-text">Direccion: @Model.Direccion</p>
+    </div>
+</div>
