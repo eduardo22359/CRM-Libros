@@ -2,8 +2,12 @@
 
 @model Producto
 
-<div class="card">
-    <dl class="row">
+<div id="cardproductos">
+  <div class="card">
+    <div class="card-header" id="tituloprod">
+      <h5 class="card-title">Producto</h5>
+    </div>
+    <dl class="row" id="cardcontenido">
       <dt class="col-sm-3">Id</dt>
       <dd class="col-sm-9">@Model.Id</dd>
 
@@ -16,4 +20,5 @@
       <dt class="col-sm-3">Cantidad</dt>
       <dd class="col-sm-9">@Model.Cantidad</dd>
     </dl>
+  </div>
 </div>

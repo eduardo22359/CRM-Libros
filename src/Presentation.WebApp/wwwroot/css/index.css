@@ -27,17 +27,21 @@ footer span {
 /*--------------------------------------------------------------*/
 
 
-.card {
+#cardempleados {
     position: absolute;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 20px !important;
     overflow: hidden;
     width: 18rem; 
     margin: 0 auto; 
-    margin-top: 5%;
+    /* Centrado en eje x y y */
+    top: 50%;
+    left: 50%;
+    /* Posicionamiento relativo al centro */
+    transform: translate(-50%, -50%);
 }
 
-.card:hover {
+#cardempleados:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
@@ -47,7 +51,6 @@ footer span {
     height: 15rem;
     border-top-left-radius: calc(.25rem - 1px);
     border-top-right-radius: calc(.25rem - 1px);
-
 }
 
 
