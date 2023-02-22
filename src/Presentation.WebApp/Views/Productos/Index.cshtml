@@ -11,7 +11,7 @@
         <th>Descripción</th>
         <th>Precio</th>
         <th>Cantidad</th>
-        <th></th>
+        <th>Opciones</th>
     </thead>
     @foreach (var e in Model)
     {
@@ -20,14 +20,14 @@
             <td>$@e.Precio</td>
             <td>@e.Cantidad</td>
             <td>
-                <button class="btn btn-info" asp-action="Details" asp-route-id="@e.Id">Detalles</button>
-                <button class="btn btn-info" asp-action="Edit" asp-route-id="@e.Id">Editar</button>
-                <button class="btn btn-info" asp-action="Delete" asp-route-id="@e.Id">Eliminar</button>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@e.Id">Detalles</a>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@e.Id">Editar</a>
+                <a class="btn btn-info" asp-action="Delete" asp-route-id="@e.Id">Eliminar</a>
             </td>
         </tr>
     }
 </table>
 <br><br>
 <div style="text-align: center;">
-<button class="btn btn-primary" asp-action="Create">Crear Producto:</button>
+<a class="btn btn-primary" asp-action="Create">Crear Producto:</a>
 </div>

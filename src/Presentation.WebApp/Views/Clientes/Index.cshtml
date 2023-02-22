@@ -25,9 +25,9 @@
             <th>@c.Telefono</th>
             <td>@c.Correo</td>
             <td>
-                <button class="btn btn-info" asp-action="Details" asp-route-id="@c.Id">Detalles</button>
-                <button class="btn btn-info" asp-action="Edit" asp-route-id="@c.Id">Editar</button>
-                <button class="btn btn-info" asp-action="Delete" asp-route-id="@c.Id">Eliminar</button>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@c.Id">Detalles</a>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@c.Id">Editar</a>
+                <a class="btn btn-info" asp-action="Delete" asp-route-id="@c.Id">Eliminar</a>
             </td>
         </tr>
     }
@@ -35,6 +35,6 @@
 <br>
 <br>
 <div style="text-align: center;">
-<button class="btn btn-primary" asp-action="Create">Crear Cliente:</button>
+<a class="btn btn-primary" asp-action="Create">Crear Cliente:</a>
 </div>
 
