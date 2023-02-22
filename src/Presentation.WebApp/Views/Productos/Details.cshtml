@@ -2,16 +2,18 @@
 
 @model Producto
 
-<dl>
-    <dt>Id</dt>
-    <dd>@Model.Id</dd>
+<div class="card">
+    <dl class="row">
+      <dt class="col-sm-3">Id</dt>
+      <dd class="col-sm-9">@Model.Id</dd>
 
-    <dt>Descripción</dt>
-    <dd>@Model.Descripcion</dd>
+      <dt class="col-sm-3">Descripción</dt>
+      <dd class="col-sm-9">@Model.Descripcion</dd>
 
-    <dt>Precio</dt>
-    <dd>@Model.Precio</dd>
+      <dt class="col-sm-3">Precio</dt>
+      <dd class="col-sm-9">@Model.Precio</dd>
 
-    <dt>Cantidad</dt>
-    <dd>@Model.Cantidad</dd>
-</dl>
+      <dt class="col-sm-3">Cantidad</dt>
+      <dd class="col-sm-9">@Model.Cantidad</dd>
+    </dl>
+</div>
