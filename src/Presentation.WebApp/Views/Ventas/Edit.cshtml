@@ -2,25 +2,47 @@
 
 @model Venta
 
-<h1>
-    Actualizar:
-</h1>
 
-<form asp-action="Edit" enctype="multipart/form-data">
-    <input asp-for="Id" type="hidden" />
 
-    ClienteId: <input asp-for="ClienteId" required />
-    <br />
-    Cliente: <input asp-for="Cliente" required />
-    <br />
-    ProductoId: <input asp-for="ProductoId" required />
-    <br />
-    Producto: <input asp-for="Producto" required />
-    <br />
-    Fecha: <input asp-for="Fecha" required />
-    <br />
-    <br />
-    <button>Actualizar</button>
-</form>
 
-<a asp-action="Index">Cancelar</a>
+<!--***********************************************************************-->
+
+
+<!-- Crea una Plantilla para un formulario-->
+<div id="editclientes">
+    <div class="card" id="cardeditcli">
+        <div class="card-header">
+            <h3>Actualizar Venta</h3>
+        </div>
+        <div class="container">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="Id" class="card-title">ID</label>
+                    <label for="Id" class="form-label">@Model.Id</label>
+                    <input type="hidden" class="form-control" id="Id" asp-for="Id" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ClienteId" class="form-label">Id del Cliente</label>
+                    <input type="text" class="form-control" id="ClienteId" asp-for="ClienteId" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ProductoId" class="form-label">Id del Producto</label>
+                    <input type="text" class="form-control" id="ProductoId" asp-for="ProductoId" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Fecha" class="form-label">Fecha</label>
+                    <input type="text" class="form-control" id="Fecha" asp-for="Fecha" required>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-success btn-block">Actualizar</button>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <button type="submit" class="btn btn-danger btn-block" asp-action="Index">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

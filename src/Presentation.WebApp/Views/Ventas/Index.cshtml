@@ -2,34 +2,47 @@
 
 @model List<Venta>
 
-<a asp-action="Create">Crear un Nueva Venta:</a>
 
-<h1>
-    Ventas:
-</h1>
 
-<table>
-    <tr>
-        <th>ClienteId</th>
-        <th>Cliente</th>
-        <th>ProductoId</th>
-        <th>Producto</th>
-        <th>Fecha</th>
-        <th></th>
-    </tr>
-    @foreach (var c in Model)
-    {
-        <tr>
-            <th>@c.ClienteId</th>
-            <td>@c.Cliente</td>
-            <th>@c.ProductoId</th>
-            <td>@c.Producto</td>
-            <td>@c.Fecha</td>
-            <td>
-                <a asp-action="Details" asp-route-id="@c.Id">Detalles</a> |
-                <a asp-action="Edit" asp-route-id="@c.Id">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@c.Id">Eliminar</a>
-            </td>
-        </tr>
-    }
-</table>
+    <br>
+    <div class="container" id="title">
+        <h1>Ventas</h1>
+    </div>
+    <br>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <th>Cliente</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Fecha</th>
+                <th>Opciones</th>
+            </thead>
+            @foreach (var c in Model)
+            {
+            <tr>
+                <td>@c.Nombre</td>
+                <td>@c.Telefono</td>
+                <td>@c.Correo</td>
+                <td>@c.Descripcion</td>
+                <td>$@c.Precio</td>
+                <td>@c.Fecha</td>
+                <td>
+                    <a class="btn btn-info btn-block" asp-action="Details" asp-route-id="@c.Id"
+                        style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Detalles</a>
+                    <a class="btn btn-warning btn-block" asp-action="Edit" asp-route-id="@c.Id"
+                        style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Editar</a>
+                    <a class="btn btn-danger btn-block" asp-action="Delete" asp-route-id="@c.Id"
+                        style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Eliminar</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <a class="btn btn-warning" asp-action="Create">Realizar una Venta</a>
+    </div>

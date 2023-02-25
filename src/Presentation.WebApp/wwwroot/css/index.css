@@ -67,17 +67,16 @@ footer span {
     left: 50%;
     /* Posicionamiento relativo al centro */
     transform: translate(-50%, -50%);
-    padding: 20px;
 }
 
 #editclientes:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.40);
 }
 
 #cardeditcli
 {
     border-radius: 30px !important;
-    padding: 20px;
+    padding: 10px;
 }
 
 

@@ -26,6 +26,7 @@ public class VentasController : Controller
         return View(data);
     }
 
+    
     public IActionResult Create()
     {
         return View();
@@ -37,6 +38,7 @@ public class VentasController : Controller
         //SmtpClientEmailService.SendEmail(data.Cliente.Correo, "Asunto", $"<h4>Hola {data.Cliente.Nombre}</h1>", true);
         return RedirectToAction("Index");
     }
+    
 
     public IActionResult Edit(Guid id)
     {
@@ -55,4 +57,5 @@ public class VentasController : Controller
         _ventasDbContext.Delete(id);
         return RedirectToAction("Index");
     }
+    
 }

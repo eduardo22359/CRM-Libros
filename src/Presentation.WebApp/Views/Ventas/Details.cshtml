@@ -2,22 +2,42 @@
 
 @model Venta
 
-<dl>
-    <dt>Id</dt>
-    <dd>@Model.Id</dd>
 
-    <dt>ClienteId</dt>
-    <dd>@Model.ClienteId</dd>
 
-    <dt>Cliente</dt>
-    <dd>@Model.Cliente</dd>
 
-    <dt>ProductoId</dt>
-    <dd>@Model.ProductoId</dd>
 
-    <dt>Producto</dt>
-    <dd>@Model.Producto</dd>
+<div id="cardproductos">
+    <div class="card">
+      <div class="card-header" id="tituloprod">
+        <h5 class="card-title">Venta</h5>
+      </div>
+      <dl class="row" id="cardcontenido">
+        <dt class="col-sm-3">Id Venta</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
 
-    <dt>Fecha</dt>
-    <dd>@Model.Fecha</dd>
-</dl>
+        <dt class="col-sm-3">Id Cliente</dt>
+        <dd class="col-sm-9">@Model.ClienteId</dd>
+
+        <dt class="col-sm-3">Cliente</dt>
+        <dd class="col-sm-9">@Model.Nombre</dd>
+
+        <dt class="col-sm-3">Telefono</dt>
+        <dd class="col-sm-9">@Model.Telefono</dd>
+
+        <dt class="col-sm-3">Correo</dt>
+        <dd class="col-sm-9">@Model.Correo</dd>
+
+        <dt class="col-sm-3">Id Producto</dt>
+        <dd class="col-sm-9">@Model.ProductoId</dd>
+  
+        <dt class="col-sm-3">Descripción</dt>
+        <dd class="col-sm-9">@Model.Descripcion</dd>
+  
+        <dt class="col-sm-3">Precio</dt>
+        <dd class="col-sm-9">$@Model.Precio</dd>
+
+        <dt class="col-sm-3">Fecha</dt>
+        <dd class="col-sm-9">@Model.Fecha</dd>
+      </dl>
+    </div>
+  </div>

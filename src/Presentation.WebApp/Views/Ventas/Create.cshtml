@@ -4,23 +4,39 @@
 
 @model Venta
 
-<h1>
-    Insertar:
-</h1>
+<!--*************************************************************************-->
 
-<form asp-action="Create" enctype="multipart/form-data">
-    ClienteId: <input asp-for="ClienteId" type="text" required />
-    <br />
-    Cliente: <input asp-for="Cliente" type="text" required />
-    <br />
-    ProductoId: <input asp-for="ProductoId" type="text" required />
-    <br />
-    Producto: <input asp-for="Producto" type="text" required />
-    <br />
-    Fecha: <input asp-for="Fecha" type="date" required />
-    <br />
-    <br />
-    <button>Crear</button>
-</form>
 
-<a asp-action="Index">Cancelar</a>
+<!-- Crea una Plantilla para un formulario-->
+<div id="editclientes">
+    <div class="card" id="cardeditcli">
+        <div class="card-header">
+            <h3>Crear una Venta</h3>
+        </div>
+        <div class="container">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="ClienteId" class="form-label">Id del Cliente</label>
+                    <input type="text" class="form-control" id="ClienteId" asp-for="ClienteId" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ProductoId" class="form-label">Id del Producto</label>
+                    <input type="text" class="form-control" id="ProductoId" asp-for="ProductoId" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="Fecha" asp-for="Fecha" required>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col d-flex justify-content-center">
+                        <button class="btn btn-success btn-block">Crear</button>
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <a type="submit" class="btn btn-danger btn-block" asp-action="Index">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -4,32 +4,32 @@
 
     <br>
     <div class="container" id="title">
-        <h1 >Productos</h1>
+        <h1>Productos</h1>
     </div>
     <br>
 
-<table class="table table-striped">
-    <thead>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Opciones</th>
-    </thead>
-    @foreach (var e in Model)
-    {
+    <table class="table table-striped">
+        <thead>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Opciones</th>
+        </thead>
+        @foreach (var e in Model)
+        {
         <tr>
             <th>@e.Descripcion</th>
             <td>$@e.Precio</td>
             <td>@e.Cantidad</td>
             <td>
                 <a class="btn btn-info" asp-action="Details" asp-route-id="@e.Id">Detalles</a>
-                <a class="btn btn-info" asp-action="Edit" asp-route-id="@e.Id">Editar</a>
-                <a class="btn btn-info" asp-action="Delete" asp-route-id="@e.Id">Eliminar</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@e.Id">Editar</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@e.Id">Eliminar</a>
             </td>
         </tr>
-    }
-</table>
-<br>
-<div style="text-align: center;">
-<a class="btn btn-warning" asp-action="Create">Crear un Producto</a>
-</div>
+        }
+    </table>
+    <br>
+    <div style="text-align: center;">
+        <a class="btn btn-warning" asp-action="Create">Crear un Producto</a>
+    </div>
