@@ -22,12 +22,22 @@
                     <input type="hidden" class="form-control" id="Id" asp-for="Id" required>
                 </div>
                 <div class="mb-3">
-                    <label for="ClienteId" class="form-label">Id del Cliente</label>
-                    <input type="text" class="form-control" id="ClienteId" asp-for="ClienteId" required>
+                    <label for="ClienteId" class="form-label">Cliente</label>
+                    <select asp-for="ClienteId" class="form-select" aria-label="Default select example" required>
+                        @foreach (var c in (List<Cliente>)ViewBag.Cliente)        
+                        {
+                            <option value="@c.Id">@c.Nombre  (@c.Telefono)</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <label for="ProductoId" class="form-label">Id del Producto</label>
-                    <input type="text" class="form-control" id="ProductoId" asp-for="ProductoId" required>
+                    <label for="ProductoId" class="form-label">Producto</label>
+                    <select asp-for="ProductoId" class="form-select" aria-label="Default select example" required>
+                        @foreach (var d in (List<Producto>)ViewBag.Producto)        
+                        {
+                            <option value="@d.Id">@d.Descripcion  ($@d.Precio)</option>
+                        }
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="Fecha" class="form-label">Fecha</label>

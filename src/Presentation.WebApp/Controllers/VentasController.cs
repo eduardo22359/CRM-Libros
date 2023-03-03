@@ -9,9 +9,14 @@ namespace Presentation.WebApp.Controllers;
 public class VentasController : Controller
 {
     private readonly VentasDbContext _ventasDbContext;
+    private readonly ClientesDbContext _clientesDbContext;
+
+    private readonly ProductosDbContext _productosDbContext;
     public VentasController(IConfiguration configuration)
     {
         _ventasDbContext = new VentasDbContext(configuration.GetConnectionString("DefaultConnection"));
+        _clientesDbContext = new ClientesDbContext(configuration.GetConnectionString("DefaultConnection"));
+        _productosDbContext = new ProductosDbContext(configuration.GetConnectionString("DefaultConnection"));
     }
 
     public IActionResult Index()
@@ -26,9 +31,11 @@ public class VentasController : Controller
         return View(data);
     }
 
-    
+
     public IActionResult Create()
     {
+        ViewBag.Cliente = _clientesDbContext.List();
+        ViewBag.Producto = _productosDbContext.List();
         return View();
     }
     [HttpPost]
@@ -38,11 +45,13 @@ public class VentasController : Controller
         //SmtpClientEmailService.SendEmail(data.Cliente.Correo, "Asunto", $"<h4>Hola {data.Cliente.Nombre}</h1>", true);
         return RedirectToAction("Index");
     }
-    
+
 
     public IActionResult Edit(Guid id)
     {
         var data = _ventasDbContext.Details(id);
+        ViewBag.Cliente = _clientesDbContext.List();
+        ViewBag.Producto = _productosDbContext.List();
         return View(data);
     }
     [HttpPost]
@@ -57,5 +66,5 @@ public class VentasController : Controller
         _ventasDbContext.Delete(id);
         return RedirectToAction("Index");
     }
-    
+
 }
