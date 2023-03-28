@@ -88,4 +88,23 @@ body {
 
 }
 
+#card
+{
+    /* Genera un margen entre el borde del card y el contenido */
+    /*background-color: #ffffff;*/
+    border-radius: 20px;
+    padding: 15px;
+    font-weight: bold;
+    /* Colocar un fondo transparente */
+    background: rgba(255, 255, 255, 0.1);
+    /* Colocar un borde */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    /* Pon desenfocado el fondo */
+    backdrop-filter: blur(5px);
 
+}
+
+.dataTables_wrapper, .dataTables_info,
+.dataTables_wrapper, .dataTables_paginate, .paginate_button, .dataTables_search {
+    color: #fff;
+}
