@@ -1,7 +1,8 @@
 
 /* CSS para el body con fondo*/
 body {
-    background-image: url("https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg");
+    /* Coloca la imagen que está en la carpeta images/Fondo.jpg */
+    background-image: url("../images/Fondo.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
