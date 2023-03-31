@@ -71,4 +71,5 @@ $(document).ready(function () {
     crearTabla('#tablaClientes');
     crearTabla('#tablaProductos');
     crearTabla('#tablaEmpleados');
+    crearTabla('#tablaVentas');
 });
