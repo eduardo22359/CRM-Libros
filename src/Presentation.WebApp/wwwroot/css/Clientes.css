@@ -37,7 +37,7 @@ tr:hover {
 
 body {
     margin: 1.5em;
-  }
+}
 
 .btn-info {
     background-color: #246355;
@@ -57,8 +57,8 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 20px !important;
     overflow: hidden;
-    width: 32rem; 
-    margin: 0 auto; 
+    width: 32rem;
+    margin: 0 auto;
     /* Centrado en eje x y y */
     top: 50%;
     left: 50%;
@@ -71,15 +71,13 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
-#cardcontenido
-{
+#cardcontenido {
     /* Genera un margen entre el borde del card y el contenido */
     padding: 10px;
 
 }
 
-#tituloprod
-{
+#tituloprod {
     /* Genera un margen entre el borde del card y el contenido */
     padding: 10px;
     text-align: center;
@@ -88,8 +86,7 @@ body {
 
 }
 
-#card
-{
+#card {
     /* Genera un margen entre el borde del card y el contenido */
     /*background-color: #ffffff;*/
     border-radius: 20px;
@@ -104,7 +101,35 @@ body {
 
 }
 
-.dataTables_wrapper, .dataTables_info,
-.dataTables_wrapper, .dataTables_paginate, .paginate_button, .dataTables_search {
+.dataTables_wrapper,
+.dataTables_info,
+.dataTables_wrapper,
+.dataTables_paginate,
+.paginate_button,
+.dataTables_search {
     color: #fff;
 }
+
+
+/* Estilos para el cuerpo del modal */
+.cuerpo-modal {
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilos para el modal */
+.modal-dialog {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+}
+
+

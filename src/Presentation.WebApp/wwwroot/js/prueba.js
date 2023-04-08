@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+
+
+
+
+
     $('.eliminar-btn').click(function (e) {
         e.preventDefault();
         // Mostrar SweetAlert
@@ -71,4 +76,8 @@ $(document).ready(function () {
     crearTabla('#tablaClientes');
     crearTabla('#tablaProductos');
     crearTabla('#tablaEmpleados');
+
+
+
 });
+
