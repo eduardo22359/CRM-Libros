@@ -1,0 +1,168 @@
+@{
+    ViewData["Title"] = "Estadisticas";
+}
+
+<br>
+<br>
+<br>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Generate a template for main content-->
+<main class="container">
+    <main class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Gráfico de pastel</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="pie-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Gráfico de línea</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="line-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card chart-container">
+                <div class="card-header">
+                    <h2>Gráfico de barras</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="bar-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Gráfico de radar</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="radar-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+// Gráfico de pastel
+function interpolateColors(count) {
+  var colors = ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"];
+  var step = 1.0 / (count - 1);
+  var gradient = new Array(count);
+
+  for (var i = 0; i < count; i++) {
+    gradient[i] = colors[Math.floor(i * step * (colors.length - 1))];
+  }
+
+  return gradient;
+}
+        new Chart(document.getElementById("pie-chart"), {
+            type: "doughnut",
+            data: {
+                labels: [@Html.Raw(string.Join(",", ViewBag.Chart2Labels))],
+                datasets: [
+                    {
+                        label: "Por producto",
+                        hoverOffset : 4,
+                        backgroundColor: interpolateColors(@(((List<string>)ViewBag.Chart2Labels).Count())),
+                        data: [@String.Join(",", ViewBag.Chart2Data)],
+                    }],
+            },
+            options: {
+                responsive: true, aspectRatio: 2, maintainAspectRatio: true,
+                },
+            },
+        );
+        // Gráfico de línea
+        new Chart(document.getElementById("line-chart"), {
+            type: "line",
+            data: {
+                labels: ["Enero", "Febrero", "Marzo", "Abril"],
+                datasets: [
+                    {
+                        label: "Ventas",
+                        data: [235, 340, 512, 635],
+                        borderColor: "#3e95cd",
+                        fill: false,
+                    },
+                ],
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Ventas por mes",
+                },
+            },
+        });
+
+        
+        // Gráfico de barras
+        new Chart(document.getElementById("bar-chart"), {
+            type: "bar",
+            data: {
+                labels: [@Html.Raw(string.Join(",", ViewBag.Chart1Labels))],
+                datasets: [
+                    {
+                        label: "Ventas",
+                        backgroundColor: interpolateColors(@(((List<string>)ViewBag.Chart1Labels).Count())),
+                        data: [@String.Join(",", ViewBag.Chart1Data)],
+                    },
+                ],
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Ventas por mes",
+                },
+            },
+        });
+
+        // Gráfico de radar
+        new Chart(document.getElementById("radar-chart"), {
+            type: "radar",
+            data: {
+                labels: ["Comida", "Ropa", "Electrónica", "Hogar"],
+                datasets: [
+                    {
+                        label: "Gastos",
+                        fill: true,
+                        backgroundColor: "rgba(179,181,198,0.2)",
+                        borderColor: "rgba(179,181,198,1)",
+                        pointBackgroundColor: "rgba(179,181,198,1)",
+                        pointBorderColor: "#fff",
+                        pointHoverBackgroundColor: "#fff",
+                        pointHoverBorderColor: "rgba(179,181,198,1)",
+                        data: [65, 59, 90, 81],
+                    },
+                ],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Gastos por categoría",
+                },
+            },
+        });
+    </script>
+
+</main>
+
+<br>
+<br>
+<br>
+<br>
