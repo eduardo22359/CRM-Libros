@@ -76,13 +76,5 @@ $(document).ready(function () {
     crearTabla('#tablaClientes');
     crearTabla('#tablaProductos');
     crearTabla('#tablaEmpleados');
-<<<<<<< HEAD
-
-
-
-});
-
-=======
     crearTabla('#tablaVentas');
 });
->>>>>>> 1eb64dc688131cb77437bf1d04d3c38f1cba1900

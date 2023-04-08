@@ -2,10 +2,64 @@
 
 @model List<Producto>
 
+    <!-- Crea el modal -->
+    <div class="modal fade" id="DetalleProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card">
+                <!-- Crea el encabezado del modal con el botón de cierre -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Crea el cuerpo del modal -->
+                <div class="modal-body">
+                    <p>Contenido del modal aquí.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="EditProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card">
+                <!-- Crea el encabezado del modal con el botón de cierre -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Crea el cuerpo del modal -->
+                <div class="modal-body">
+                    <p>Contenido del modal aquí.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <br>
     <div class="container" id="title">
         <h1>Productos</h1>
     </div>
+    <br>
+
+    <div style="text-align: center;">
+        <a class="btn btn-warning" asp-action="Create">Crear un Producto</a>
+    </div>
+
     <br>
 
     <div class="card" id="card">
@@ -26,9 +80,15 @@
                     <td>$@e.Precio</td>
                     <td>@e.Cantidad</td>
                     <td>
-                        <a class="btn btn-info" asp-action="Details" asp-route-id="@e.Id">Detalles</a>
-                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@e.Id">Editar</a>
+                        <!--<a class="btn btn-info" asp-action="Details" asp-route-id="@e.Id">Detalles</a>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@e.Id">Editar</a>-->
                         <a class="btn btn-danger eliminar-btn" asp-action="Delete" asp-route-id="@e.Id">Eliminar</a>
+                    
+                        <button type="button" class="btn btn-primary BtnModalDetalleProducto" data-bs-toggle="modal"
+                            data-bs-target="#DetalleProducto" data-producto-id="@e.Id">Detalles</button>
+
+                        <button type="button" class="btn btn-warning BtnModalEditProducto" data-bs-toggle="modal"
+                            data-bs-target="#EditProducto" data-producto-id="@e.Id">Editar</button>
                     </td>
                 </tr>
                 }
@@ -36,6 +96,53 @@
         </table>
     </div>
     <br>
-    <div style="text-align: center;">
-        <a class="btn btn-warning" asp-action="Create">Crear un Producto</a>
-    </div>
+    
+
+
+
+
+    
+
+    @section Scripts {
+
+        <!-- Crea un script para abrir los detalles del cliente dependiendo del id que se proporcione en el botón  btn btn-primary BotonParaModal-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".BtnModalDetalleProducto").click(function () {
+                    var id = $(this).data("producto-id");
+    
+                    //var id = $(this).attr("asp-route-id");
+                    $.ajax({
+                        url: "/Productos/Details/" + id,
+                        type: "GET",
+                        success: function (data) {
+                            var cardContent = $(data).find("#cardproductos .card #cardcontenido").html();
+                            $("#DetalleProducto .modal-body").html(cardContent);
+                            $("#DetalleProducto").modal("show");
+                        }
+                    });
+                });
+            });
+        </script>
+    
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".BtnModalEditProducto").click(function () {
+                    var id = $(this).data("producto-id");
+    
+                    //var id = $(this).attr("asp-route-id");
+                    $.ajax({
+                        url: "/Productos/Edit/" + id,
+                        type: "GET",
+                        success: function (data) {
+                            var cardContent = $(data).find("#editclientes .card .container").html();
+                            $("#EditProducto .modal-body").html(cardContent);
+                            $("#EditProducto").modal("show");
+                        }
+                    });
+                });
+            });
+        </script>
+    
+    
+        }

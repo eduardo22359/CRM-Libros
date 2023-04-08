@@ -4,21 +4,72 @@
 
 
 
+
+    <!-- Crea el modal -->
+    <div class="modal fade" id="DetalleVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card">
+                <!-- Crea el encabezado del modal con el botón de cierre -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Crea el cuerpo del modal -->
+                <div class="modal-body">
+                    <p>Contenido del modal aquí.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="EditVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card">
+                <!-- Crea el encabezado del modal con el botón de cierre -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Crea el cuerpo del modal -->
+                <div class="modal-body">
+                    <p>Contenido del modal aquí.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <br>
     <div class="container" id="title">
         <h1>Ventas</h1>
     </div>
     <br>
 
-<!--Crea una tabla dentro de un card--> 
+    <!--Crea una tabla dentro de un card-->
+
+    <div style="text-align: center;">
+        <a class="btn btn-warning" asp-action="Create">Realizar una Venta</a>
+    </div>
+    <br>
 
 
 
-
-
-  <div class="card" id="card">
-    <div class="table-responsive">
-        <table class="table table-striped-hover" id="tablaVentas">
+    <div class="card" id="card">
+        <table class="table table-striped table-hover" id="tablaVentas">
             <thead>
                 <th>Cliente</th>
                 <th>Telefono</th>
@@ -29,31 +80,82 @@
                 <th>Opciones</th>
             </thead>
             <tbody>
-            @foreach (var c in Model)
-            {
-            <tr>
-                <td>@c.Nombre</td>
-                <td>@c.Telefono</td>
-                <td>@c.Correo</td>
-                <td>@c.Descripcion</td>
-                <td>$@c.Precio</td>
-                <td>@c.Fecha</td>
-                <td>
-                    <a class="btn btn-info btn-block" asp-action="Details" asp-route-id="@c.Id"
-                        style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Detalles</a>
-                    <a class="btn btn-warning btn-block" asp-action="Edit" asp-route-id="@c.Id"
-                        style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Editar</a>
-                    
-                    <a class="btn btn-danger eliminar-btn" asp-action="Delete" asp-route-id="@c.Id"
-                        style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Eliminar</a>
-                </td>
-            </tr>
-            }
+                @foreach (var c in Model)
+                {
+                <tr>
+                    <td>@c.Nombre</td>
+                    <td>@c.Telefono</td>
+                    <td>@c.Correo</td>
+                    <td>@c.Descripcion</td>
+                    <td>$@c.Precio</td>
+                    <td>@c.Fecha</td>
+                    <td>
+                        <!--<a class="btn btn-info btn-block" asp-action="Details" asp-route-id="@c.Id"
+                            style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Detalles</a>
+                        <a class="btn btn-warning btn-block" asp-action="Edit" asp-route-id="@c.Id"
+                            style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Editar</a>-->
+
+                        <a class="btn btn-danger eliminar-btn" asp-action="Delete" asp-route-id="@c.Id"
+                            style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Eliminar</a>
+
+                        <button type="button" class="btn btn-primary BtnModalDetalleVenta" data-bs-toggle="modal"
+                            data-bs-target="#DetalleVenta" data-venta-id="@c.Id"
+                            style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Detalles</button>
+
+                        <button type="button" class="btn btn-warning BtnModalEditVenta" data-bs-toggle="modal"
+                            data-bs-target="#EditVenta" data-venta-id="@c.Id"
+                            style="--bs-btn-padding-y: .40rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .50rem;">Editar</button>
+
+                    </td>
+                </tr>
+                }
             </tbody>
         </table>
     </div>
-   </div>
     <br>
-    <div style="text-align: center;">
-        <a class="btn btn-warning" asp-action="Create">Realizar una Venta</a>
-    </div>
+
+
+
+    @section Scripts {
+
+    <!-- Crea un script para abrir los detalles del cliente dependiendo del id que se proporcione en el botón  btn btn-primary BotonParaModal-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".BtnModalDetalleVenta").click(function () {
+                var id = $(this).data("venta-id");
+
+                //var id = $(this).attr("asp-route-id");
+                $.ajax({
+                    url: "/Ventas/Details/" + id,
+                    type: "GET",
+                    success: function (data) {
+                        var cardContent = $(data).find("#cardproductos .card #cardcontenido").html();
+                        $("#DetalleVenta .modal-body").html(cardContent);
+                        $("#DetalleVenta").modal("show");
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".BtnModalEditVenta").click(function () {
+                var id = $(this).data("venta-id");
+
+                //var id = $(this).attr("asp-route-id");
+                $.ajax({
+                    url: "/Ventas/Edit/" + id,
+                    type: "GET",
+                    success: function (data) {
+                        var cardContent = $(data).find("#editclientes .card .container").html();
+                        $("#EditVenta .modal-body").html(cardContent);
+                        $("#EditVenta").modal("show");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    }
