@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.RegularExpressions;
 
 using Domain;
 using Infrastructure;
@@ -40,47 +41,43 @@ public class VentasController : Controller
     {
         ViewBag.Cliente = _clientesDbContext.List();
         ViewBag.Producto = _productosDbContext.List();
-        
+
         return View();
     }
     [HttpPost]
     public IActionResult Create(Venta data)
-{
-    _ventasDbContext.Create(data);
-    var cliente = _clientesDbContext.Details(data.ClienteId);
-    var producto = _productosDbContext.Details(data.ProductoId);
+    {
+        var cliente = _clientesDbContext.Details(data.ClienteId);
+        var producto = _productosDbContext.Details(data.ProductoId);
+        _ventasDbContext.Create(data);
+        // Envía un Email al Cliente con el detalle de la venta, la cuál contiene Correo, Nombre, Dirección, Teléfono y ID en formato HTML utilizando bootstrap
+        _emailService.SendEmail(cliente.Correo, "Detalle de la Venta", $@"
+        <div>
+          <h1>Detalle de la Venta</h1>
+            <hr />
+            <p >Fecha y hora de la venta: {DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss")}</p>
+          <p>Aquí está la información del cliente:</p>
+          <ul>
+            <li><strong>ID:</strong> {cliente.Id}</li>
+            <li><strong>Nombre:</strong> {cliente.Nombre}</li>
+            <li><strong>Correo:</strong> {cliente.Correo}</li>
+            <li><strong>Dirección:</strong> {cliente.Direccion}</li>
+            <li><strong>Teléfono:</strong> {cliente.Telefono}</li>
+          </ul>
 
-    // Envía un Email al Cliente con el detalle de la venta, la cuál contiene Correo, Nombre, Dirección, Teléfono y ID en formato HTML utilizando bootstrap
-    _emailService.SendEmail(cliente.Correo, "Detalle de la Venta", $@"
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-6'>
-      <h1>Detalle de la Venta</h1>
-        <hr />
-        <p class='lead'>Fecha y hora de la venta: {DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss")}</p>
-      <p class='lead'>Aquí está la información del cliente:</p>
-      <ul class='list-group'>
-        <li class='list-group-item'><strong>ID:</strong> {cliente.Id}</li>
-        <li class='list-group-item'><strong>Nombre:</strong> {cliente.Nombre}</li>
-        <li class='list-group-item'><strong>Correo:</strong> {cliente.Correo}</li>
-        <li class='list-group-item'><strong>Dirección:</strong> {cliente.Direccion}</li>
-        <li class='list-group-item'><strong>Teléfono:</strong> {cliente.Telefono}</li>
-      </ul>
+          <p>Aquí está la información del producto:</p>
+          <ul>
+            <li><strong>ID:</strong> {producto.Id}</li>
+            <li><strong>Descripción:</strong> {producto.Descripcion}</li>
+            <li><strong>Precio:</strong> {producto.Precio.ToString("C")}</li>
+          </ul>
+        </div>
+    ");
 
-      <p class='lead'>Aquí está la información del producto:</p>
-      <ul class='list-group'>
-        <li class='list-group-item'><strong>ID:</strong> {producto.Id}</li>
-        <li class='list-group-item'><strong>Descripción:</strong> {producto.Descripcion}</li>
-        <li class='list-group-item'><strong>Precio:</strong> {producto.Precio.ToString("C")}</li>
-      </ul>
-    </div>
-  </div>
-</div>
-");
+        
+        return RedirectToAction("Index");
+    }
 
-
-    return RedirectToAction("Index");
-}
 
 
     public IActionResult Edit(Guid id)
