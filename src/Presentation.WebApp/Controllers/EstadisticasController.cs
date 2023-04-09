@@ -33,6 +33,27 @@ public class EstadisticasController : Controller
             .Select(x => $"{x.Count()}")
             .ToList();
 
+        var productos = _productosDbContext.List();
+        
+        ViewBag.Chart3Labels = productos
+            .GroupBy(x => x.Descripcion)
+            .Select(x => $"'{x.Key}'")
+            .ToList();
+        ViewBag.Chart3Data = productos
+            .GroupBy(x => x.Precio)
+            .Select(x => $"{x.Key}")
+            .ToList();
+            
+        ViewBag.Chart4Labels = productos
+            .GroupBy(x => x.Descripcion)
+            .Select(x => $"'{x.Key}'")
+            .ToList();
+        ViewBag.Chart4Data = productos
+            .GroupBy(x => x.Cantidad)
+            .Select(x => $"{x.Key}")
+            .ToList();
+
+
         var clientes = _clientesDbContext.List();
         ViewBag.Chart2Labels = clientes
             .GroupBy(x => x.Nombre)

@@ -40,6 +40,7 @@ public class VentasController : Controller
     {
         ViewBag.Cliente = _clientesDbContext.List();
         ViewBag.Producto = _productosDbContext.List();
+        
         return View();
     }
     [HttpPost]
