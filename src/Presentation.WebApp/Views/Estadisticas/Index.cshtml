@@ -13,7 +13,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h2>Gráfico de pastel</h2>
+                    <h2>Productos por persona</h2>
                 </div>
                 <div class="card-body">
                     <canvas id="pie-chart"></canvas>
@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h2>Gráfico de línea</h2>
+                    <h2>Precio por producto</h2>
                 </div>
                 <div class="card-body">
                     <canvas id="line-chart"></canvas>
@@ -36,7 +36,7 @@
         <div class="col-md-6">
             <div class="card chart-container">
                 <div class="card-header">
-                    <h2>Gráfico de barras</h2>
+                    <h2>Edad por persona</h2>
                 </div>
                 <div class="card-body">
                     <canvas id="bar-chart"></canvas>
@@ -46,10 +46,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h2>Gráfico de radar</h2>
+                    <h2>Cantidad por producto</h2>
                 </div>
                 <div class="card-body">
-                    <canvas id="radar-chart"></canvas>
+                    <canvas id="line-chart2"></canvas>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@ function interpolateColors(count) {
                 labels: [@Html.Raw(string.Join(",", ViewBag.Chart2Labels))],
                 datasets: [
                     {
-                        label: "Por producto",
+                        label: "Productos",
                         hoverOffset : 4,
                         backgroundColor: interpolateColors(@(((List<string>)ViewBag.Chart2Labels).Count())),
                         data: [@String.Join(",", ViewBag.Chart2Data)],
@@ -86,27 +86,24 @@ function interpolateColors(count) {
                 },
             },
         );
-        // Gráfico de línea
+// Gráfico de línea
         new Chart(document.getElementById("line-chart"), {
             type: "line",
             data: {
-                labels: ["Enero", "Febrero", "Marzo", "Abril"],
+                labels: [@Html.Raw(string.Join(",", ViewBag.Chart3Labels))],
                 datasets: [
                     {
-                        label: "Ventas",
-                        data: [235, 340, 512, 635],
-                        borderColor: "#3e95cd",
-                        fill: false,
+                        label: "Precio por Producto",
+                        hoverOffset : 4,
+                        backgroundColor: interpolateColors(@(((List<string>)ViewBag.Chart3Labels).Count())),
+                        data: [@String.Join(",", ViewBag.Chart3Data)],
+                        fill : false,
                     },
                 ],
             },
             options: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: "Ventas por mes",
+                responsive: true, aspectRatio: 2, maintainAspectRatio: true,
                 },
-            },
         });
 
         
@@ -117,9 +114,10 @@ function interpolateColors(count) {
                 labels: [@Html.Raw(string.Join(",", ViewBag.Chart1Labels))],
                 datasets: [
                     {
-                        label: "Ventas",
+                        label: "Personas",
                         backgroundColor: interpolateColors(@(((List<string>)ViewBag.Chart1Labels).Count())),
                         data: [@String.Join(",", ViewBag.Chart1Data)],
+                        
                     },
                 ],
             },
@@ -132,31 +130,24 @@ function interpolateColors(count) {
             },
         });
 
-        // Gráfico de radar
-        new Chart(document.getElementById("radar-chart"), {
-            type: "radar",
+        // Gráfico de línea2
+        new Chart(document.getElementById("line-chart2"), {
+            type: "line",
             data: {
-                labels: ["Comida", "Ropa", "Electrónica", "Hogar"],
+                labels: [@Html.Raw(string.Join(",", ViewBag.Chart4Labels))],
                 datasets: [
                     {
-                        label: "Gastos",
-                        fill: true,
-                        backgroundColor: "rgba(179,181,198,0.2)",
-                        borderColor: "rgba(179,181,198,1)",
-                        pointBackgroundColor: "rgba(179,181,198,1)",
-                        pointBorderColor: "#fff",
-                        pointHoverBackgroundColor: "#fff",
-                        pointHoverBorderColor: "rgba(179,181,198,1)",
-                        data: [65, 59, 90, 81],
+                        label: "Precio por Producto",
+                        hoverOffset : 4,
+                        backgroundColor: interpolateColors(@(((List<string>)ViewBag.Chart4Labels).Count())),
+                        data: [@String.Join(",", ViewBag.Chart4Data)],
+                        fill : false,
                     },
                 ],
             },
             options: {
-                title: {
-                    display: true,
-                    text: "Gastos por categoría",
+                responsive: true, aspectRatio: 2, maintainAspectRatio: true,
                 },
-            },
         });
     </script>
 
