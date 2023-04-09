@@ -12,11 +12,15 @@ public class VentasController : Controller
     private readonly ClientesDbContext _clientesDbContext;
 
     private readonly ProductosDbContext _productosDbContext;
+
+    private readonly SmtpClientEmailService _emailService;
     public VentasController(IConfiguration configuration)
     {
         _ventasDbContext = new VentasDbContext(configuration.GetConnectionString("DefaultConnection"));
         _clientesDbContext = new ClientesDbContext(configuration.GetConnectionString("DefaultConnection"));
         _productosDbContext = new ProductosDbContext(configuration.GetConnectionString("DefaultConnection"));
+        _emailService = new SmtpClientEmailService(configuration.GetSection("SmtpClientEmailService"));
+
     }
 
     public IActionResult Index()
@@ -40,11 +44,12 @@ public class VentasController : Controller
     }
     [HttpPost]
     public IActionResult Create(Venta data)
-    {
-        _ventasDbContext.Create(data);
-        //SmtpClientEmailService.SendEmail(data.Cliente.Correo, "Asunto", $"<h4>Hola {data.Cliente.Nombre}</h1>", true);
-        return RedirectToAction("Index");
-    }
+{
+    _ventasDbContext.Create(data);
+    var data2 = _clientesDbContext.Details(data.ClienteId);
+    _emailService.SendEmail(data2.Correo, "Asunto", $"<h4>Hola {data2.Nombre}</h1>", true);
+    return RedirectToAction("Index");
+}
 
 
     public IActionResult Edit(Guid id)
