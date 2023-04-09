@@ -19,7 +19,7 @@ public class VentasController : Controller
         _ventasDbContext = new VentasDbContext(configuration.GetConnectionString("DefaultConnection"));
         _clientesDbContext = new ClientesDbContext(configuration.GetConnectionString("DefaultConnection"));
         _productosDbContext = new ProductosDbContext(configuration.GetConnectionString("DefaultConnection"));
-        _emailService = new SmtpClientEmailService(configuration.GetSection("SmtpClientEmailService"));
+        _emailService = new SmtpClientEmailService(configuration.GetSection("Smtp"));
 
     }
 
@@ -47,8 +47,38 @@ public class VentasController : Controller
     public IActionResult Create(Venta data)
 {
     _ventasDbContext.Create(data);
-    var data2 = _clientesDbContext.Details(data.ClienteId);
-    _emailService.SendEmail(data2.Correo, "Asunto", $"<h4>Hola {data2.Nombre}</h1>", true);
+    var cliente = _clientesDbContext.Details(data.ClienteId);
+    var producto = _productosDbContext.Details(data.ProductoId);
+
+    // Envía un Email al Cliente con el detalle de la venta, la cuál contiene Correo, Nombre, Dirección, Teléfono y ID en formato HTML utilizando bootstrap
+    _emailService.SendEmail(cliente.Correo, "Detalle de la Venta", $@"
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6'>
+      <h1>Detalle de la Venta</h1>
+        <hr />
+        <p class='lead'>Fecha y hora de la venta: {DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss")}</p>
+      <p class='lead'>Aquí está la información del cliente:</p>
+      <ul class='list-group'>
+        <li class='list-group-item'><strong>ID:</strong> {cliente.Id}</li>
+        <li class='list-group-item'><strong>Nombre:</strong> {cliente.Nombre}</li>
+        <li class='list-group-item'><strong>Correo:</strong> {cliente.Correo}</li>
+        <li class='list-group-item'><strong>Dirección:</strong> {cliente.Direccion}</li>
+        <li class='list-group-item'><strong>Teléfono:</strong> {cliente.Telefono}</li>
+      </ul>
+
+      <p class='lead'>Aquí está la información del producto:</p>
+      <ul class='list-group'>
+        <li class='list-group-item'><strong>ID:</strong> {producto.Id}</li>
+        <li class='list-group-item'><strong>Descripción:</strong> {producto.Descripcion}</li>
+        <li class='list-group-item'><strong>Precio:</strong> {producto.Precio.ToString("C")}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+");
+
+
     return RedirectToAction("Index");
 }
 
